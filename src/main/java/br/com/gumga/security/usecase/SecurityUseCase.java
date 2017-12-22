@@ -1,5 +1,7 @@
 package br.com.gumga.security.usecase;
 
+import org.apache.log4j.Logger;
+
 import br.com.gumga.security.domain.Additions;
 import br.com.gumga.security.domain.Deductions;
 import br.com.gumga.security.domain.Score;
@@ -12,10 +14,19 @@ import br.com.gumga.security.domain.Score;
  *
  */
 public class SecurityUseCase {
-	
-	public String verifySecurityPassword(String password){
-		Score score = new Score(new Additions(password), new Deductions(password));
-		return score.getScore();
+
+	private static final Logger LOGGER = Logger.getLogger(SecurityUseCase.class);
+
+	public String verifySecurityPassword(String password) {
+		String scoreData = "";
+		try {
+			Score score = new Score(new Additions(password), new Deductions(password));
+			scoreData = score.getScore();
+		} catch (NullPointerException | StringIndexOutOfBoundsException e) {
+			LOGGER.error("Error verify security password", e);
+		}
+
+		return scoreData;
 	}
 
 }
