@@ -1,7 +1,7 @@
-# security (Aplicação Back-end)
+# security
 
 ### Componente requisitado
-Avaliador de segurança para senhas.
+Avaliador de segurança para senhas
 
 ### Requisitos
 As regras de negócio devem seguir ao site: http://passwordmeter.com
